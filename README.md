@@ -4,10 +4,7 @@ This is ssh configuration template.
 
 # Install
 
-Run `setup.sh`.
-```shell
-$ setup.sh
-```
+Run `setup.sh`.  
 `setup.sh` create symbolic links as follows.  
 * ~/.ssh/config -> /this/dir/config
 * ~/.ssh/config.d -> /this/dir/config.d
