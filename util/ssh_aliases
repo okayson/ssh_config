@@ -1,0 +1,50 @@
+
+SSH_HOST_FILTER=fzf
+
+# Required SSH_HOST_FILTER-------------->
+if type ${SSH_HOST_FILTER} >/dev/null 2>&1; then
+
+  __ssh_list_hosts() {
+      command cat <(command tail -n +1 ~/.ssh/config ~/.ssh/config.d/* /etc/ssh/ssh_config 2> /dev/null | command grep -i '^\s*host\(name\)\? ' | awk '{for (i = 2; i <= NF; i++) print $1 " " $i}' | command grep -v '[*?]') \
+          <(command grep -oE '^[[a-z0-9.,:-]+' ~/.ssh/known_hosts | tr ',' '\n' | tr -d '[' | awk '{ print $1 " " $1 }') \
+          <(command grep -v '^\s*\(#\|$\)' /etc/hosts | command grep -Fv '0.0.0.0') |
+          awk '{if (length($2) > 0) {print $2}}' | sort -u
+  }
+
+  __ssh_select_host() {
+    local selected="$(__ssh_list_hosts | fzf -q "$1" --prompt='HOST> ')"
+    if [ -n "${selected}" ]; then
+      echo $selected
+    fi
+  }
+
+  __ssh_connect_to_selected_host() {
+    local selected=$(__ssh_select_host $@)
+    if [ -n "${selected}" ]; then
+      ssh ${selected}
+    fi
+  }
+
+  # Put local file to remote home directory.
+  __scp_put_home() {
+    local file=$(find -type f | fzf --prompt='PUT FILE> ')
+    if [ -z ${file} ]; then
+      exit
+    fi
+    local host=$(__ssh_select_host)
+    if [ -z ${host} ]; then
+      exit
+    fi
+
+    # scp ${file} ${host}:~
+    echo "scp ${file} ${host}:~"
+  }
+
+  alias sssh='__ssh_connect_to_selected_host'
+  alias sscp='__scp_put_home'
+
+fi
+# Required SSH_HOST_FILTER--------------<
+
+
+# vim: set filetype=sh:

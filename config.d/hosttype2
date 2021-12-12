@@ -1,0 +1,11 @@
+Host _xyz2-1
+	HostName xyz.example.com2-1
+	Port 2222
+	User abc
+	IdentityFile ~/.ssh/abc.pem
+
+Host _xyz2-2
+	HostName xyz.example.com2-2
+	Port 2222
+	User abc
+	IdentityFile ~/.ssh/abc.pem
