@@ -69,8 +69,8 @@ $ cat typescript | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})*)?m//g" | col > log.
 ```
 
 # c.f.
-https://qiita.com/passol78/items/2ad123e39efeb1a5286b
-https://qiita.com/masa0x80/items/ecb692ad93f7d06a07b0
-https://qiita.com/tumf/items/73e495e1274bc25acf5f
-https://s10i.me/whitenote/post/42
+https://qiita.com/passol78/items/2ad123e39efeb1a5286b  
+https://qiita.com/masa0x80/items/ecb692ad93f7d06a07b0  
+https://qiita.com/tumf/items/73e495e1274bc25acf5f  
+https://s10i.me/whitenote/post/42  
 
