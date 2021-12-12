@@ -5,7 +5,10 @@ This is ssh configuration template.
 # Install
 
 Run `setup.sh`.
-`setup.sh` create symbolic links as follows.
+```shell
+$ setup.sh
+```
+`setup.sh` create symbolic links as follows.  
 * ~/.ssh/config -> /this/dir/config
 * ~/.ssh/config.d -> /this/dir/config.d
 
@@ -15,7 +18,7 @@ Remove symbolic links which are created by `Install`.
 
 # Edit Template
 
-Edit `config` and `config.d/*` as you want to do!
+Edit `config` and `config.d/*` as you want to do!  
 By template, `config` load all of files in `config.d`.
 
 # Tips
